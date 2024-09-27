@@ -11,8 +11,8 @@ class BankAccount {
       } else {
         setTimeout(() => {
           this.balance += jumlah;
-          resolve(`Deposit successful. Your new balance is: ${this.balance}`);
-        }, 1000); // Simulate 2 seconds delay
+          resolve(`Berhasil. Saldo anda adalah: ${this.balance}`);
+        }, 1000); // delay 1 detik
       }
     });
   }
@@ -30,7 +30,7 @@ class BankAccount {
           resolve(
             "penarikan berhasil. saldo anda sekarnag adalah:" + this.balance
           );
-        }, 1000); // Simulate 2 seconds delay
+        }, 1000); // delay 1 detik
       }
     });
   }
@@ -46,7 +46,7 @@ function validasiNominal(input) {
       "Input tidak valid. Masukkan nominal yang benar (hanya angka):"
     );
   }
-  return +input; // Convert to number after validation
+  return +input;
 }
 
 function validasiTanya(input) {
@@ -69,7 +69,7 @@ tanya = validasiTanya(tanya);
 
 if (tanya === "1") {
   let tambah = prompt("Masukkan jumlah saldo yang ingin ditambahkan");
-  tambah = validasiNominal(tambah); // Validate input
+  tambah = validasiNominal(tambah);
 
   account
     .deposit(tambah)
@@ -81,7 +81,7 @@ if (tanya === "1") {
     });
 } else if (tanya === "2") {
   let kurang = prompt("Masukkan jumlah saldo yang ingin dikurangi");
-  kurang = validasiNominal(kurang); // Validate input
+  kurang = validasiNominal(kurang);
 
   account
     .withdraw(kurang)
@@ -95,3 +95,4 @@ if (tanya === "1") {
   // langsung mengeluarkan saldo
   alert("Terima kasih! Saldo Anda sekarang adalah " + account.getBalance());
 }
+//tes tes
