@@ -93,6 +93,6 @@ if (tanya === "1") {
     });
 } else {
   // langsung mengeluarkan saldo
-  alert("Terima kasih! Saldo Anda sekarang adalah " + account.getBalance());
+  alert("Terima kasih! " + account.getBalance());
 }
 //tes tes
