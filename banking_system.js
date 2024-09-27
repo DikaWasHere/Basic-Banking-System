@@ -35,13 +35,11 @@ class BankAccount {
     });
   }
 
-  // Method to get the current balance
   getBalance() {
     return `saldo anda sekarang adalah: ${this.balance}`;
   }
 }
 
-// Function to validate user input
 function validasiNominal(input) {
   while (isNaN(input) || input === "" || input <= 0) {
     input = prompt(
@@ -51,7 +49,6 @@ function validasiNominal(input) {
   return +input; // Convert to number after validation
 }
 
-// Function to validate menu choice
 function validasiTanya(input) {
   while (input !== "1" && input !== "2" && input !== "3") {
     input = prompt(
@@ -61,20 +58,16 @@ function validasiTanya(input) {
   return input;
 }
 
-// Create a new BankAccount object with initial balance
 const account = new BankAccount();
 
-// Show initial balance
 alert("+===BANK===+\n|| saldo anda " + account.balance + " ||\n+==========+");
 
-// Ask the user what they want to do
 let tanya = prompt(
   "Apa yang kamu ingin lakukan?\n1. Tambah saldo\n2. Kurangi saldo\n3. Keluar"
 );
-tanya = validasiTanya(tanya); // Validate input
+tanya = validasiTanya(tanya);
 
 if (tanya === "1") {
-  // If user wants to deposit money
   let tambah = prompt("Masukkan jumlah saldo yang ingin ditambahkan");
   tambah = validasiNominal(tambah); // Validate input
 
@@ -87,7 +80,6 @@ if (tanya === "1") {
       alert(error);
     });
 } else if (tanya === "2") {
-  // If user wants to withdraw money
   let kurang = prompt("Masukkan jumlah saldo yang ingin dikurangi");
   kurang = validasiNominal(kurang); // Validate input
 
@@ -100,6 +92,6 @@ if (tanya === "1") {
       alert(error);
     });
 } else {
-  // If user chooses to exit
+  // langsung mengeluarkan saldo
   alert("Terima kasih! Saldo Anda sekarang adalah " + account.getBalance());
 }
