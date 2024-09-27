@@ -52,7 +52,7 @@ function validasiNominal(input) {
 function validasiTanya(input) {
   while (input !== "1" && input !== "2" && input !== "3") {
     input = prompt(
-      "Input tidak valid. Pilih salah satu:\n1. Tambah saldo\n2. Kurangi saldo\n3. Keluar"
+      "Input tidak valid. Pilih salah satu:\n1. Deposit\n2. Withdraw\n3. Keluar"
     );
   }
   return input;
@@ -63,7 +63,7 @@ const account = new BankAccount();
 alert("+===BANK===+\n|| saldo anda " + account.balance + " ||\n+==========+");
 
 let tanya = prompt(
-  "Apa yang kamu ingin lakukan?\n1. Tambah saldo\n2. Kurangi saldo\n3. Keluar"
+  "Apa yang kamu ingin lakukan?\n1. Deposit\n2. Withdraw\n3. Keluar"
 );
 tanya = validasiTanya(tanya);
 
