@@ -1,8 +1,50 @@
-let saldo = 100; // Variabel saldo dengan nilai awal
+// Membuat kelas Bank
+class Bank {
+  constructor(saldoAwal) {
+    this.saldo = saldoAwal;
+    alert(`+===BANK===+\n|| saldo anda ${saldoAwal} ||\n+==========+`);
+  }
 
-alert("+===BANK===+\n|| saldo anda 100 ||\n+==========+");
+  // Fungsi untuk menambah saldo
+  tambahSaldo() {
+    let tambah = prompt("Masukkan jumlah saldo yang ingin ditambahkan");
+    tambah = this.validasiNominal(tambah);
+    this.saldo += tambah;
+    alert(`${this.saldo} adalah saldo baru Anda`);
+  }
 
-// Fungsi untuk memvalidasi input tanya (1, 2, atau 3)
+  // Fungsi untuk mengurangi saldo
+  kurangiSaldo() {
+    let kurang = prompt("Masukkan jumlah saldo yang ingin dikurangi");
+    kurang = this.validasiNominal(kurang);
+
+    // Validasi saldo tidak kurang dari nol
+    while (this.saldo - kurang < 0) {
+      alert("Saldo tidak cukup. Silakan masukkan nominal yang valid.");
+      kurang = prompt("Masukkan jumlah saldo yang ingin dikurangi");
+      kurang = this.validasiNominal(kurang);
+    }
+
+    this.saldo -= kurang;
+    alert(`${this.saldo} adalah saldo baru Anda`);
+  }
+
+  // Fungsi untuk validasi input nominal
+  validasiNominal(input) {
+    while (isNaN(input) || input === "" || input <= 0) {
+      input = prompt(
+        "Input tidak valid. Masukkan nominal yang benar (hanya angka):"
+      );
+    }
+    return +input;
+  }
+
+  // Menampilkan saldo saat keluar
+  tampilkanSaldo() {
+    alert(`Terima kasih! Saldo Anda sekarang adalah ${this.saldo}`);
+  }
+}
+
 function validasiTanya(input) {
   while (input !== "1" && input !== "2" && input !== "3") {
     input = prompt(
@@ -12,54 +54,17 @@ function validasiTanya(input) {
   return input;
 }
 
-// Meminta input dari pengguna dan melakukan validasi
+const bankSaya = new Bank(100);
+
 let tanya = prompt(
   "Apa yang kamu ingin lakukan?\n1. Tambah saldo\n2. Kurangi saldo\n3. Keluar"
 );
 tanya = validasiTanya(tanya); // Validasi input tanya
 
-// Fungsi untuk memastikan input hanya angka
-function validasiNominal(input) {
-  while (isNaN(input) || input === "" || input <= 0) {
-    input = prompt(
-      "Input tidak valid. Masukkan nominal yang benar (hanya angka):"
-    );
-  }
-  return +input; // Konversi ke tipe angka setelah validasi
-}
-
 if (tanya === "1") {
-  // Function tambahSaldo
-  function tambahSaldo() {
-    let tambah = prompt("Masukkan jumlah saldo yang ingin ditambahkan");
-    tambah = validasiNominal(tambah); // Validasi input
-
-    saldo += tambah;
-    return saldo;
-  }
-  console.log("Saldo Anda sekarang adalah " + tambahSaldo());
-  alert(saldo + " adalah saldo baru Anda");
+  bankSaya.tambahSaldo();
 } else if (tanya === "2") {
-  // Function kurangiSaldo
-  function kurangiSaldo() {
-    let kurang = prompt("Masukkan jumlah saldo yang ingin dikurangi");
-    kurang = validasiNominal(kurang); // Validasi input
-
-    // Validasi saldo tidak kurang dari nol
-    while (saldo - kurang < 0) {
-      alert("Saldo tidak cukup. Silakan masukkan nominal yang valid.");
-      kurang = prompt("Masukkan jumlah saldo yang ingin dikurangi");
-      kurang = validasiNominal(kurang); // Validasi input lagi
-    }
-
-    saldo -= kurang;
-    return saldo;
-  }
-
-  console.log("Saldo Anda sekarang adalah " + kurangiSaldo());
-  alert(saldo + " adalah saldo baru Anda");
+  bankSaya.kurangiSaldo();
 } else {
-  // Jika tanya == "3" (Keluar)
-  console.log("Saldo Anda adalah " + saldo);
-  alert("Terima kasih! Saldo Anda sekarang adalah " + saldo);
+  bankSaya.tampilkanSaldo();
 }
